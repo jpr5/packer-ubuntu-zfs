@@ -2,6 +2,7 @@
 
 This repository contains [Packer][packerio] templates for building Amazon Machine Images for Ubuntu with a ZFS root filesystem. Currently the following distributions are supported:
 
+- Ubuntu 20.04 ("Focal") LTS with AWS-Optimized Kernel
 - Ubuntu 18.04 ("Bionic") LTS with AWS-Optimized Kernel
 - Ubuntu 16.04 ("Xenial") LTS with AWS-Optimized Kernel
 
@@ -14,7 +15,7 @@ You can read about how this template works on the [operator-error.com][oe] blog.
 
 ## Running a build
 
-Use the `bionic` or `xenial` targets of the Makefile in root of the repository to build an AMI in `us-west-2`, and copy it to all regions. Use a recent version of Packer - only the latest available at the time of last editing has been tested (currently: version 1.3.1).
+Use the `bionic`, `xenial` or `focal` targets of the Makefile in root of the repository to build an AMI in `us-west-2`, and copy it to all regions. Use a recent version of Packer - only the latest available at the time of last editing has been tested (currently: version 1.3.1).
 
 The following environment variables must be set in order for the build to succeed:
 
