@@ -92,7 +92,7 @@
             "type": "shell",
             "start_retry_timeout": "5m",
             "script": "scripts/surrogate-bootstrap.sh",
-            "execute_command": "sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+            "execute_command": "sudo -S --preserve-env=SSH_AUTH_SOCK sh -c '{{ .Vars }} {{ .Path }}'",
             "skip_clean": true
         }
     ]
