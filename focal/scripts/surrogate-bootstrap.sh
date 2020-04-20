@@ -98,6 +98,7 @@ mkdir -p /mnt/{dev,proc,sys}
 mount --rbind /dev /mnt/dev
 mount --rbind /proc /mnt/proc
 mount --rbind /sys /mnt/sys
+mount --rbind /tmp /mnt/tmp # for ssh-agent socket
 
 # Copy the bootstrap script into place and execute inside chroot
 cp /tmp/chroot-bootstrap.sh /mnt/tmp/chroot-bootstrap.sh
@@ -115,6 +116,7 @@ sleep 10
 umount -l /mnt/dev
 umount -l /mnt/proc
 umount -l /mnt/sys
+umount -l /mnt/tmp
 
 # Export the zpool
 zpool export rpool
