@@ -39,7 +39,6 @@ zfs create \
     -o mountpoint=/ \
     rpool/ROOT/ubuntu
 
-umount /mnt
 zfs mount rpool/ROOT/ubuntu
 
 # /home
