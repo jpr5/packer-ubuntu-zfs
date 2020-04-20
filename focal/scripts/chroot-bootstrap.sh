@@ -12,16 +12,16 @@ echo 'grub-pc grub-pc/install_devices_empty select true' | debconf-set-selection
 echo 'grub-pc grub-pc/install_devices select' | debconf-set-selections
 
 # Install various packages needed for a booting system
-DEBIAN_FRONTEND=noninteractive apt-get install -y \
+export DEBIAN_FRONTEND=noninteractive
+
+# Install various packages needed for a booting system
+apt-get install -y \
     linux-aws \
     grub-pc \
-    zfs-zed \
     zfsutils-linux \
     zfs-initramfs \
-    zfs-dkms \
     gdisk
 
-# Set the locale to en_US.UTF-8
 locale-gen --purge "en_US.UTF-8"
 
 cat << EOF > /etc/default/locale
@@ -49,8 +49,15 @@ EOF
 
 update-grub
 
-# Networking - Focal uses NetPlan/CloudInit, no need to configure anything now
+cat << EOF > /etc/netplan/eth0.yaml
+network:
+  version: 2
+  ethernets:
+    eth0:
+      dhcp4: true
+EOF
 
 # Install standard packages
-DEBIAN_FRONTEND=noninteractive apt-get install -y ubuntu-standard
-DEBIAN_FRONTEND=noninteractive apt-get install -y cloud-init
+apt-get install -y \
+        ubuntu-standard \
+        cloud-init
