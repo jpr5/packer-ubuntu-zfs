@@ -6,6 +6,8 @@ set -o xtrace
 
 export DEBIAN_FRONTEND=noninteractive
 
+cp /tmp/sources.list /etc/apt/sources.list
+
 # Update apt and install required packages
 apt-get update
 apt-get install -y \
