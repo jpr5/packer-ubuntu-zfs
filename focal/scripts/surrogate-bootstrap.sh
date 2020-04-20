@@ -10,13 +10,7 @@ cp /tmp/sources.list /etc/apt/sources.list
 
 # Update apt and install required packages
 apt-get update
-apt-get install -y \
-    zfs-zed \
-    zfsutils-linux \
-    zfs-initramfs \
-    zfs-dkms \
-    debootstrap \
-    gdisk
+apt-get install -y gdisk zfsutils-linux debootstrap
 
 # Partition the new root EBS volume
 sgdisk -Zg -n1:0:4095 -t1:EF02 -c1:GRUB -n2:0:0 -t2:BF01 -c2:ZFS /dev/xvdf
