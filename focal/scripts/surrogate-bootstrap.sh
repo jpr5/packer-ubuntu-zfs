@@ -107,9 +107,7 @@ mount --rbind /sys /mnt/sys
 mount --rbind /tmp /mnt/tmp # for ssh-agent socket
 
 # Copy the bootstrap script into place and execute inside chroot
-cp /tmp/chroot-bootstrap.sh /mnt/tmp/chroot-bootstrap.sh
 chroot /mnt /tmp/chroot-bootstrap.sh
-rm -f /mnt/tmp/chroot-bootstrap.sh
 
 # Remove temporary sources list - CloudInit regenerates it
 rm -f /mnt/etc/apt/sources.list
