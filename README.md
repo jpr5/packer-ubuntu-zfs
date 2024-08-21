@@ -3,6 +3,7 @@
 This repository contains [Packer][packerio] templates for building Amazon Machine Images for Ubuntu with a ZFS root
 filesystem. Currently the following distributions are supported:
 
+- Ubuntu 24.04 ("Noble") LTS with AWS-Optimized Kernel
 - Ubuntu 20.04 ("Focal") LTS with AWS-Optimized Kernel
 - Ubuntu 18.04 ("Bionic") LTS with AWS-Optimized Kernel
 - Ubuntu 16.04 ("Xenial") LTS with AWS-Optimized Kernel
@@ -18,15 +19,16 @@ You can read about how this template works on the [jen20.dev][oe] blog. Some rel
 ## Differences between versions
 
 As well as installing different versions of the Ubuntu distribution, the templates in this repository have
-evolved at different rates. The `focal` template is the most complete, and includes the following changes
-compared to other versions:
+evolved at different rates. The `noble` template is the most complete.
 
-- Support for AWS NVME device rules
-- Support for expanding the ZFS root filesystem via Cloud-Init
-- Clearing of the apt-cache as part of the build
+## Running a build (Noble)
 
-These changes could likely be backported to other distributions, but they are mostly there for information
-only since I personally only use (and test) the latest LTS distribution for new images.
+Use the `noble` target of the Makefile in the root of the repository to build an AMI in `us-west-2`. If you wish to copy
+the AMI to other regions, edit the template to specify `aws_regions` in the `amazon-ebssurrogate.source` source.
+
+AWS credentials are sourced from the environment using the standard AWS chain exposed by Packer. SSH auth sock is also passed through, to enable accessing otherwise private GIT repos if you so wish.
+
+The template has been tested using v1.9.4 of Packer.
 
 ## Running a build (Focal)
 
@@ -57,7 +59,7 @@ Thanks to:
 - [Zachary Schneider][zachs] for reviewing the template and blog post prior to publication.
 
 [oe]: https://operator-error.com
-[oepost1]: https://jen20.dev/post/building-zfs-root-ubuntu-amis-with-packer/ 
+[oepost1]: https://jen20.dev/post/building-zfs-root-ubuntu-amis-with-packer/
 [oepost2]: https://jen20.dev/post/ubuntu-18.04-with-root-zfs-on-aws/
 [oepost3]: https://jen20.dev/post/ubuntu-20.04-with-root-zfs-in-aws/
 [scotte]: https://www.scotte.org
