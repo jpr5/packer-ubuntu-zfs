@@ -14,6 +14,10 @@ bionic: ## Build AMI for Ubuntu 18.04 ("Bionic") LTS
 focal: ## Build AMI for Ubuntu 20.04 ("Focal") LTS
 	@cd focal && packer build template.pkr.hcl
 
+.PHONY: noble
+noble: ## Build AMI for Ubuntu 24.04 ("Focal") LTS
+	@cd noble && packer build ami.pkr.hcl
+
 .PHONY: help
 help: ## Display this information. Default target.
 	@echo "Valid targets:"
